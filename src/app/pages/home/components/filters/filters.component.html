@@ -4,7 +4,7 @@
     <mat-panel-title> CATEGORIES </mat-panel-title>
   </mat-expansion-panel-header>
   
-  <mat-selection-list (selectionChange)="onSelectionChange()">
+  <mat-selection-list #categoriesList [(ngModel)]="selectedCategories" (ngModelChange)="onSelectionChange()">
     <mat-list-option *ngFor="let category of categories" [value]="category">
       <!--Je definiert een local variable category en voor ieder element in de verzameling wordt een option aangemaakt-->
       <!--property binding: je bindt de local variable aan de value van mat-list-option -->
@@ -13,5 +13,8 @@
   </mat-selection-list>
   
 </mat-expansion-panel>
+
+
+
 
 

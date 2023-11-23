@@ -12,7 +12,7 @@ export class FiltersComponent {
 
   onSelectionChange() {
     this.selectedCategoriesChange.emit(this.selectedCategories);
-    console.log('deze functie werkt in child')
+    console.log('Selected Categories in Child:', this.selectedCategories);
   }
 
 }
