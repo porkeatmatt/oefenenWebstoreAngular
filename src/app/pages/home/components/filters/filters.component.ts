@@ -5,17 +5,14 @@ import { Component, EventEmitter, Output } from '@angular/core';
   templateUrl: 'filters.component.html'
 })
 export class FiltersComponent {
-  @Output() showCategory = new EventEmitter<string>(); 
+  @Output() selectedCategoriesChange = new EventEmitter<string[]>();
 
-  categories: string[] = ['shoes', 'sports'];
+  categories: string[] = ['Ugly Apes', 'Ugly Lions'];
+  selectedCategories: string[] = [];
 
-  onShowCategory(category: string): void{
-    this.showCategory.emit(category);
-    console.log("deze functie werkt")
-  }
-
-  logToConsole(): void {
-    console.log('Button clicked! Log message from the component.');
+  onSelectionChange() {
+    this.selectedCategoriesChange.emit(this.selectedCategories);
+    console.log('deze functie werkt in child')
   }
 
 }

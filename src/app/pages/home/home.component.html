@@ -6,7 +6,7 @@
 
 <!-- hoogte is volledige container, breedte max 7x viewport -->
     <mat-drawer mode="side" opened class="p-6">
-        <app-filters (showCategory)="handleCategory($event)"></app-filters>
+        <app-filters (selectedCategoriesChange)="onSelectedCategoriesChange($event)"></app-filters>
     </mat-drawer>
     <mat-drawer-content class="p-6">
         <app-products-header (columnsCountChange)="onColumsCountChange($event)">
@@ -16,4 +16,6 @@
         {{selectedCategory}}
     </mat-drawer-content>
 </mat-drawer-container>
+
+
 
