@@ -3,7 +3,6 @@
     class="min-h-full max-w-7x1 mx-auto border-x"
 >
 <!-- the drawer past zich automatisch aan grootte v scherm -->
-
 <!-- hoogte is volledige container, breedte max 7x viewport -->
     <mat-drawer mode="side" opened class="p-6">
         <app-filters (selectedCategoriesChange)="onSelectedCategoriesChange($event)"></app-filters>
@@ -19,26 +18,14 @@
             >
             <!--gutterSize property bepaalt ruimte tussen de tiles-->
             <mat-grid-tile>
-                <app-product-box class="w-full" [fullWidthMode] ="cols === 1">
+                <app-product-box 
+                        (addToCart)="onAddToCart($event)"
+                    class="w-full" 
+                    [fullWidthMode] ="cols === 1">
                     <!--fullWidthMode is alleen true als cols gelijk is aan 1-->
                 </app-product-box>
             </mat-grid-tile>
-            <mat-grid-tile>
-                <app-product-box class="w-full" [fullWidthMode] ="cols === 1">
-                </app-product-box>
-            </mat-grid-tile>
-            <mat-grid-tile>
-                <app-product-box class="w-full" [fullWidthMode] ="cols === 1">
-                </app-product-box>
-            </mat-grid-tile>
-            <mat-grid-tile>
-                <app-product-box class="w-full" [fullWidthMode] ="cols === 1">
-                </app-product-box>
-            </mat-grid-tile>
-            <mat-grid-tile>
-                <app-product-box class="w-full" [fullWidthMode] ="cols === 1">
-                </app-product-box>
-            </mat-grid-tile>
+           
         </mat-grid-list>
        <!--ul>
             <li *ngFor="let category of selectedCategoriesParent">{{ category }}</li>
