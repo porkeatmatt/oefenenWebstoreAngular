@@ -12,10 +12,37 @@
         <app-products-header (columnsCountChange)="onColumsCountChange($event)">
             <!--links is een event en rechts de methode die je hierbij oproept-->
         </app-products-header>
-        {{cols}}
-        <ul>
+        <mat-grid-list
+            gutterSize="16"
+            [cols]="cols"
+            [rowHeight]="rowHeight"
+            >
+            <!--gutterSize property bepaalt ruimte tussen de tiles-->
+            <mat-grid-tile>
+                <app-product-box class="w-full" [fullWidthMode] ="cols === 1">
+                    <!--fullWidthMode is alleen true als cols gelijk is aan 1-->
+                </app-product-box>
+            </mat-grid-tile>
+            <mat-grid-tile>
+                <app-product-box class="w-full" [fullWidthMode] ="cols === 1">
+                </app-product-box>
+            </mat-grid-tile>
+            <mat-grid-tile>
+                <app-product-box class="w-full" [fullWidthMode] ="cols === 1">
+                </app-product-box>
+            </mat-grid-tile>
+            <mat-grid-tile>
+                <app-product-box class="w-full" [fullWidthMode] ="cols === 1">
+                </app-product-box>
+            </mat-grid-tile>
+            <mat-grid-tile>
+                <app-product-box class="w-full" [fullWidthMode] ="cols === 1">
+                </app-product-box>
+            </mat-grid-tile>
+        </mat-grid-list>
+       <!--ul>
             <li *ngFor="let category of selectedCategoriesParent">{{ category }}</li>
-        </ul>
+        </ul-->
     </mat-drawer-content>
 </mat-drawer-container>
 
