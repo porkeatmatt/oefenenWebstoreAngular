@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { Cart, CartItem } from '../models/cart.model';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
@@ -13,13 +13,14 @@ export class CartService {
   //de lege items array is de beginwaarde die geupdate wordt
   cart = new BehaviorSubject<Cart>({items: []});
   
-
-  
   //dependancy injection: we declareren een private property genaamd "_snackBar" 
   //van type MatSnackBar, private maakt het alleen bruikbaar in deze klasse
   //MatSnackBar toont notificaties
-  constructor(private _snackBar: MatSnackBar) { 
-    
+  constructor(private _snackBar: MatSnackBar) { }
+
+  // emit cart as an observable
+  getCartObservable(): Observable<Cart> {
+    return this.cart.asObservable();
   }
 
   addToCart(item: CartItem): void {
@@ -43,12 +44,29 @@ export class CartService {
       //next() is een methode van Observables die een nieuwe value uitzendt
       //{items: items} je creert een object genaamd items en wijst de al bestaande array er aan toe
       //je gebruikt deze methode om aan te geven dat de staat vd cart is geupdate
+      //linkse items is array van de property, rechts is lokale variable
       this.cart.next({items: items})
 
       //Toont notificatie die je kan sluiten of zichzelf sluit na 3 sec
       this._snackBar.open('1 item added to cart', 'close', {duration: 3000});
 
     
+    }
+
+    getTotal(items: Array<CartItem>): number{
+      return items.
+        map((item) => item.price * item.quantity)
+        //loop doorheen items en vermenigvuldig de prijs en hoeveelheid
+        .reduce((prev, current) => prev + current, 0)
+        //voeg ieder element toe aan vorige, init value is 0
+    }
+
+    clearCart(): void {
+      //maak items array in cart leeg en emit value
+      this.cart.next ({items: []});
+      this._snackBar.open('Cart is cleared.', 'ok', {
+        duration: 3000
+      });
     }
 
   

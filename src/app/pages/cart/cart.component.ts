@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Cart, CartItem } from '../../models/cart.model';
+import { CartService } from '../../services/cart.service';
 
 @Component({
   selector: 'app-cart',
@@ -7,6 +8,10 @@ import { Cart, CartItem } from '../../models/cart.model';
 })
 export class CartComponent {
   dataSource: Array<CartItem> = [];
+
+  constructor(private cartService: CartService){
+
+  }
 
   cart: Cart = { items: [ {
     product: 'assets/images/ape1.png',
@@ -42,11 +47,7 @@ export class CartComponent {
   ]
 
   getTotal(items: Array<CartItem>): number{
-    return items.
-      map((item) => item.price * item.quantity)
-      //loop doorheen items en vermenigvuldig de prijs en hoeveelheid
-      .reduce((prev, current) => prev + current, 0)
-      //voeg ieder element toe aan vorige, init value is 0
+    return this.cartService.getTotal(items);
   }  
     
 
