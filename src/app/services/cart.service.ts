@@ -47,6 +47,8 @@ export class CartService {
       //linkse items is array van de property, rechts is lokale variable
       this.cart.next({items: items})
 
+      console.log('items in cart:', this.cart.value.items)
+
       //Toont notificatie die je kan sluiten of zichzelf sluit na 3 sec
       this._snackBar.open('1 item added to cart', 'close', {duration: 3000});
 

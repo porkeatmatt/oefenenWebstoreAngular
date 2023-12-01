@@ -4,7 +4,7 @@
 >
 <!-- the drawer past zich automatisch aan grootte v scherm -->
 <!-- hoogte is volledige container, breedte max 7x viewport -->
-    <mat-drawer mode="side" opened class="p-6">
+    <mat-drawer mode="side" closed class="p-6 w-56">
         <app-filters (selectedCategoriesChange)="onSelectedCategoriesChange($event)"></app-filters>
     </mat-drawer>
     <mat-drawer-content class="p-6">
@@ -17,7 +17,7 @@
             [rowHeight]="rowHeight"
             >
             <!--gutterSize property bepaalt ruimte tussen de tiles-->
-            <mat-grid-tile *ngFor="let product of products">
+            <mat-grid-tile *ngFor="let product of importedProducts">
                 <app-product-box
                     [product] = "product" 
                     (addToCart)="onAddToCart($event)"

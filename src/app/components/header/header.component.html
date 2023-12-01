@@ -1,6 +1,8 @@
 <mat-toolbar class="mx-auto justify-between">
     <!-- mx-auto centers element horizontaal -->
     <a routerLink="home">APESTORE</a>
+    <a routerLink="home">BUY SOME SHITTY NFT ANIMALS</a>
+    
     <button mat-icon-button [matMenuTriggerFor]="menu">
         <!-- [matMenu...] is een directive waarmee je aanpassingen doet op een DOM element  -->
         <mat-icon 
@@ -24,7 +26,7 @@
                         class="flex justify-between font-light mb-4">
                         {{item.name}} X {{item.quantity}}
                     <span 
-                        class="font-bold">{{ getTotal(cart.items) | currency: 'EUR' }}</span> 
+                        class="font-bold">{{ item.price | currency: 'EUR' }}</span> 
                     <!-- | is een pipe die data aanpast of vervormt -->
                 </div>
                 
@@ -32,7 +34,7 @@
             </div>
             <div class="flex justify-between py-3 font-light">
                 Total:
-                <span class="font-bold">{{'450'| currency: 'EUR'}}</span> 
+                <span class="font-bold">{{ getTotal(cart.items)| currency: 'EUR'}}</span> 
             </div>
             <div class="pt-3 flex justify-between">
                 <button (click)="onClearCart()" class="bg-rose-600 text-white rounded-full w-9 h-9">

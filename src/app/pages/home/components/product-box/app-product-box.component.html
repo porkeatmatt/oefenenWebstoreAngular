@@ -1,26 +1,30 @@
-<mat-card [ngClass]="{'text-center': !fullWidthMode}">
+<mat-card 
+    style="background-color: #eff6ff;"
+    [ngClass]="{'text-center': !fullWidthMode}">
     <!--Centreer text wanneer je niet in fullWidtMode zit-->  
     <div [ngClass]="{flex: fullWidthMode}">
         <img 
-            class="mb-1 mx-auto h-[200px]" 
+            class="mb-1 mx-auto h-[200px] mt-5 rounded-full" 
             [ngClass]="{'h-200px': !fullWidthMode, 'h-[360px]': fullWidthMode}"
             [src]="product.image"
             >
-        <div class="w-full"
+        <div class="w-full mt-5"
             [ngClass]="{'px-8 flex flex-col justify-between' : fullWidthMode}">
             <div>
-                <h5>{{product.category}}</h5>
-                <p class="truncate hover:whitespace-normal">
+                <p class="truncate hover:whitespace-normal text-lg font-mono">
                     <!--truncate zorgt dat text niet buiten de box gaat-->
                     <!--hover zorgt dat je toch volle text ziet als je met je muis erover gaat-->
                     {{product.title}}
                 </p>
                 <p *ngIf="fullWidthMode">{{product.description}}</p>
             </div>
-            <div class="flex justify-between pl-3 pr-3">
-                <span class="text-green-500">{{product.price | currency: 'EUR'}}</span>
-                <button (click)="onAddToCart()">
-                    <mat-icon class="text-gray-500">shopping_cart</mat-icon>
+            <div class="flex justify-between pl-3 pr-3 mb-4">
+                <span class="text-green-600">{{product.price | currency: 'EUR'}}</span>
+                <button mat-raised-button
+                        style="background-color: #fed7aa; color: #0c0a09;"
+                        (click)="onAddToCart()">
+                    <mat-icon class="text-slate-950 ">shopping_cart</mat-icon>
+                    Add to Cart
                 </button>
             </div>
         </div>
