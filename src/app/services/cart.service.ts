@@ -69,5 +69,33 @@ export class CartService {
       });
     }
 
-  
+    removeFromCart(item: CartItem): void {
+      // .value je returnt current value van de cart observable wat een array is met items
+      //filter methode creeërt nieuwe array met alle elementen die voldoen meegegeven conditie
+      const filteredItems = this.cart.value.items.filter(
+        (_item) => _item.id !== item.id
+        );
+
+      //we zetten updaten de array in de observable 
+        this.cart.next({items: filteredItems});
+        this._snackBar.open('1 item removed from cart.', 'close', {
+          duration: 3000
+        })
+    }
+
+    
+    removeOneFromCart(item: CartItem){
+      const items = [...this.cart.value.items];
+      const itemToUpdate = items.find((_item) => _item.id === item.id);
+
+      if (itemToUpdate && itemToUpdate.quantity > 1) {
+        itemToUpdate.quantity -= 1;
+        
+        this.cart.next({ items });
+      }else {
+        this.removeFromCart(item);
+      }
+    }
+
+
 }

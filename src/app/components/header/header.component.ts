@@ -13,14 +13,16 @@ export class HeaderComponent {
   private _cart: Cart = {items: []};
   itemsQuantity= 0;
   
-  //getter and setter
+  //getter and setter 
+  
+  // @Input bindt nu cart van app.comp met de property hier via getter/setter
   @Input()
   get cart(): Cart{
     return this._cart
   }
   
   set cart(cart: Cart){
-    console.log('_cart updated:', cart);
+    
     this._cart = cart;
 
     //map returnt array met quantity van ieder item
@@ -30,8 +32,19 @@ export class HeaderComponent {
       .reduce ((prev, current) => prev + current, 0)
   }
   
-  constructor(){
+  //private betekent dat je de service alleen in ts file kan gebruiken niet in HTML
+  constructor(private cartService: CartService){
 
   }
+
+  getTotal(items: Array<CartItem>): number{
+    return this.cartService.getTotal(items);
+  }
+
+  onClearCart(): void{
+    this.cartService.clearCart();
+  }
+
+  
 
 }
