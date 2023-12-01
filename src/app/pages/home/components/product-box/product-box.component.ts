@@ -8,16 +8,18 @@ import { Product } from '../../../../models/product.model';
 })
 export class ProductBoxComponent {
   @Input() fullWidthMode = false;
-
+  @Input() product: Product | undefined ;
+  
+  
   // product is een variable van type Product of undefined
-  product: Product | undefined = {
-    id: 2,
-    title: 'Ugly Influencer',
-    price: 153,
-    category: 'ape',
-    description: 'Spends too much time on Instagram',
-    image: 'assets/images/ape2.png'
-  }; 
+  // product: Product | undefined = {
+  //   id: 2,
+  //   title: 'Ugly Influencer',
+  //   price: 153,
+  //   category: 'ape',
+  //   description: 'Spends too much time on Instagram',
+  //   image: 'assets/images/ape2.png'
+  // }; 
   
   @Output() addToCart = new EventEmitter(); 
   onAddToCart(): void {

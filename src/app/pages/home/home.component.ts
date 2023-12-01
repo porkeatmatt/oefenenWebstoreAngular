@@ -39,8 +39,27 @@ export class HomeComponent {
       quantity: 1,
       id: product.id
     })
-  }
+  } 
 
+  products: Product[] = [
+    {
+      id: 1,
+      title: 'Ugly Detective',
+      price: 358.85,
+      category: 'ape',
+      description: 'Very popular on social media',
+      image: 'assets/images/ape1.png',
+    },
+    {
+      id: 2,
+      title: 'Ugly Influencer',
+      price: 69.69,
+      category: 'ape',
+      description: 'Spends too much time on Instagram',
+      image: 'assets/images/ape2.png',
+    },
+    
+  ];
 }
 
 
