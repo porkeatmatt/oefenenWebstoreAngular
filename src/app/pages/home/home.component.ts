@@ -14,15 +14,13 @@ const ROWS_HEIGHT : {[id:number]: number} = {1:400, 3:350, 4:330}
 export class HomeComponent {
 
   importedProducts: Product [] = [];
+  cols = 3;
+  rowHeight = ROWS_HEIGHT[this.cols];
+  selectedCategoriesParent: string[] = [];
   
   //dependancy injection van een service via constructor
   constructor(private cartService: CartService){}
   
-  cols = 3;
-  rowHeight = ROWS_HEIGHT[this.cols];
-  
-  selectedCategoriesParent: string[] = [];
-
   onColumsCountChange(colsNum: number): void{
     this.cols = colsNum;
     this.rowHeight = ROWS_HEIGHT[this.cols];
@@ -46,6 +44,15 @@ export class HomeComponent {
   
   ngOnInit(){
     this.importedProducts = externalProducts;
+    this.importedProducts = this.shuffleProducts(this.importedProducts);
+  }
+
+  shuffleProducts(products: Product[]): Product[] {
+    for (let i = products.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [products[i], products[j]] = [products[j], products[i]];
+    }
+    return products;
   }
 
 }
